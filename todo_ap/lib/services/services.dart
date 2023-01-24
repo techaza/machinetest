@@ -8,6 +8,7 @@ class Services {
     final list = prefs.getStringList(kStringListKey) ?? [];
     final newList = [...list, data];
     prefs.setStringList(kStringListKey, newList);
+
     return true;
   }
 
@@ -22,6 +23,7 @@ class Services {
   static Future<List<String>> todos() async {
     final prefs = await SharedPreferences.getInstance();
     final list = prefs.getStringList(kStringListKey);
-    return list ?? [];
+
+    return list == null ? [""] : ["", ...list];
   }
 }
